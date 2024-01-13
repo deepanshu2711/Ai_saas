@@ -9,12 +9,12 @@ const openai = new OpenAI({
 
 export async function POST(req: Request) {
     try {
-        // const {userId} = auth();
+        const {userId} = auth();
         const body = await req.json();
         const {content} = body;
-        // if(!userId){
-        //     return new NextResponse("Unauthorized" ,{status:401});
-        // }
+        if(!userId){
+            return new NextResponse("Unauthorized" ,{status:401});
+        }
         if(!openai){
             return new NextResponse("Open Ai api key not Configured" ,{status:500});
         }
