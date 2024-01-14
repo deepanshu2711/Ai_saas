@@ -1,12 +1,13 @@
 "use client"
 import Heading from "@/components/Heading";
 import { Button } from "@/components/ui/button";
-import { MessageSquare } from "lucide-react";
+import { CodeIcon } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import { Empty } from "@/components/empty";
+import ReactMarkdown from "react-markdown";
 
-const ConversationPage = () => {
+const CodePage = () => {
     const[content,setcontent] =useState("");
     const[resmessage,setresmessage] =useState<any>([]);
     const[generating,setgenerating] =useState(false);
@@ -19,7 +20,7 @@ const ConversationPage = () => {
             if(!content){
                 return;
             }
-            const responce = await fetch("/api/conversation",{
+            const responce = await fetch("/api/code",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
@@ -47,14 +48,14 @@ const ConversationPage = () => {
     return ( 
         
         <div>
-            <Heading title="Conversation" description="our most advanced conversation model"
-            icon={MessageSquare} iconColor="text-violet-500" bgColor="bg-violet-500/10"
+            <Heading title="Code Generation" description="our most advanced code generating model"
+            icon={CodeIcon} iconColor="text-green-700" bgColor="bg-green-700/10"
             />
 
             <div className="p-2">
                 <form onSubmit={handleSubmit} className="w-full flex flex-col md:flex-row gap-4 items-center border p-8 rounded-lg">
                     <input onChange={(e)=>setcontent(e.target.value)} id="prompt"  className="w-full  p-3 rounded-lg border-b-2 focus-within:outline-none hover:shadow-md focus-within:shadow-md" 
-                    type="text" placeholder="how can I find the area of circle ?"/>
+                    type="text" placeholder="Simple toggle button using react hooks."/>
                     <Button disabled={generating} className="p-3 w-full  uppercase md:w-40 " >{generating ? <Image className="animate-spin" width={30} height={30} src={"/logo.png"} alt="searching"/>: "Generate"}</Button>
                 </form>
             </div>
@@ -70,8 +71,13 @@ const ConversationPage = () => {
                     `}
                     >
                         <Image src={"/logo.png"} alt="Genius" width={25} height={25} />
-                        {res.content}
-                        
+                        <ReactMarkdown className={"flex flex-col gap-4"} components={{
+                            pre:({children}) =>(
+                                    <div className=" w-full bg-green-900/10 p-4 rounded-lg "><pre>{children}</pre></div>
+                            ),
+                        }}>
+                        {res.content || ""}
+                        </ReactMarkdown>
                     </div>
                 ))}
                 </div>
@@ -80,4 +86,4 @@ const ConversationPage = () => {
      );
 }
  
-export default ConversationPage;
+export default CodePage;
