@@ -11,13 +11,7 @@ const tools =[
     bgColor:"bg-violet-500/10",
     href:"/conversation"
   },
-  {
-    lable:"Music Generation",
-    icon:MusicIcon,
-    color:"text-emerald-500",
-    bgColor:"bg-emerald-500/10",
-    href:"/music"
-  },
+  
   {
     lable:"Image generation",
     icon:ImageIcon,
@@ -25,13 +19,7 @@ const tools =[
     bgColor:"bg-pink-700/10",
     href:"/image"
   },
-  {
-    lable:"Video Generation",
-    icon:VideoIcon,
-    color:"text-orange-500",
-    bgColor:"bg-orange-500/10",
-    href:"/video"
-  },
+  
   {
     lable:"Code Generation",
     icon:CodeIcon,

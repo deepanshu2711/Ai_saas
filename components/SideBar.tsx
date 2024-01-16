@@ -27,18 +27,7 @@ const SideBar = () => {
             href:"/image",
             color:"text-pink-700"
         },
-        {
-            lable :"Video Generation",
-            icon:VideoIcon,
-            href:"/video",
-            color:"text-orange-700"
-        },
-        {
-            lable :"Music Generation",
-            icon:MusicIcon,
-            href:"/music",
-            color:"text-orange-700"
-        },
+        
         {
             lable :"Code Generation",
             icon:Code,
